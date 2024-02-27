@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: csv_imports
+    database: raw
+    schema: public
+    description: Rental property managagement data imported from CSVs
+
+    tables:
+      - name: amenities_changelog
+        description: One record per update to each listing's amenities
+      - name: calendar
+        description: One record for each listing per day showing reservation history
+      - name: generated_reviews
+        description: One record per review for a given listing
+      - name: listings
+        description: One record for each listing with the host and property information

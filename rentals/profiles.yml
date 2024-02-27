@@ -1,0 +1,25 @@
+rentals:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: '{{ env_var("DBT_ENV_SECRET_SNOWFLAKE_ACCOUNT") }}'
+      user: '{{ env_var("DBT_ENV_SECRET_SNOWFLAKE_USER") }}'
+      password: '{{ env_var("DBT_ENV_SECRET_SNOWFLAKE_PASSWORD") | as_text }}'
+      role: accountadmin
+      database: dbt_cdavis_dev
+      schema: default # override with dbt_project.yml
+      threads: 1
+      warehouse: compute_wh      
+
+    prod:
+      type: snowflake
+      account: '{{ env_var("DBT_ENV_SECRET_SNOWFLAKE_ACCOUNT") }}'
+      user: '{{ env_var("DBT_ENV_SECRET_SNOWFLAKE_USER") }}'
+      password: '{{ env_var("DBT_ENV_SECRET_SNOWFLAKE_PASSWORD") | as_text }}'
+      role: accountadmin
+      database: rentals
+      schema: default # override with dbt_project.yml
+      threads: 1
+      warehouse: compute_wh
+

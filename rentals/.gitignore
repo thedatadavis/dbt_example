@@ -1,0 +1,11 @@
+
+target/
+dbt_packages/
+logs/
+
+.vscode/
+
+*.env
+.user.yml
+
+*.DS_Store

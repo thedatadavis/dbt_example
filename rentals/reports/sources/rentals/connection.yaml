@@ -1,0 +1,8 @@
+# This file was automatically generated
+name: rentals
+type: snowflake
+options:
+  account: orftlyb-hg77949
+  database: dbt_cdavis_dev
+  warehouse: compute_wh
+  authenticator: userpass

@@ -1,0 +1,12 @@
+version: 2
+
+macros:
+    - name: generate_schema_name
+      description: Overrides default schema naming behavior
+      arguments:
+        - name: custom_schema_name
+          type: string
+          description: Schema name as set in models section of dbt_project.yml
+        - name: node
+          type: ref
+          description: Reference to the node that's calling the macro

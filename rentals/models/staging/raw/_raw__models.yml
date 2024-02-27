@@ -1,0 +1,94 @@
+version: 2
+
+models:
+  - name: stg_raw__amenities_changelog
+    description: Staging layer for the `amenities_changelog` table
+    columns:
+      - name: listing_id
+        description: '{{ doc("amenities_listing_id") }}'
+      - name: change_date
+        description: '{{ doc("amenities_change_at") }}'
+      - name: amenities
+        description: '{{ doc("amenities_amenities") }}'
+
+
+  - name: stg_raw__availabilities
+    description: Renames the `calender` table; creates surrogate primary key, and renames columns
+    columns:
+      - name: availability_id
+        description: Surrogate primary key made up of `date` and `listing_id`
+      - name: listing_id
+        description: '{{ doc("calendar_listing_id") }}'
+      - name: reservation_id
+        description: '{{ doc("calendar_reservation_id") }}'
+      - name: daily_rate
+        description: '{{ doc("calendar_price") }}'
+      - name: minimum_nights
+        description: '{{ doc("calendar_minimum_nights") }}'
+      - name: maximum_nights
+        description: '{{ doc("calendar_maximum_nights") }}'
+      - name: is_available
+        description: '{{ doc("calendar_available") }}'
+      - name: available_date
+        description: '{{ doc("calendar_date") }}'
+
+  - name: stg_raw__listings
+    description: Staging layer for the `listings` table
+    columns:
+      - name: listing_id
+        description: '{{ doc("listings_id") }}'
+      - name: listing_name
+        description: '{{ doc("listings_name") }}'
+      - name: neighborhood
+        description: '{{ doc("listings_neighborhood") }}'
+      - name: property_type
+        description: '{{ doc("listings_property_type") }}'
+      - name: room_type
+        description: '{{ doc("listings_room_type") }}'
+      - name: amenities
+        description: '{{ doc("listings_amenities") }}'
+      - name: accommodates
+        description: '{{ doc("listings_accommodates") }}'
+      - name: bathrooms_text
+        description: '{{ doc("listings_bathrooms_text") }}'
+      - name: bathrooms
+        description: Extracted number from "bathrooms_text"
+      - name: bedrooms
+        description: '{{ doc("listings_bedrooms") }}'
+      - name: beds
+        description: '{{ doc("listings_beds") }}'
+      - name: original_daily_rate_text
+        description: '{{ doc("listings_price") }}'
+      - name: original_daily_rate
+        description: Extracted number from "price"
+      - name: host_id
+        description: '{{ doc("listings_host_id") }}'
+      - name: host_name
+        description: '{{ doc("listings_host_name") }}'
+      - name: host_location
+        description: '{{ doc("listings_host_location") }}'
+      - name: host_verifications
+        description: '{{ doc("listings_host_verifications") }}'
+      - name: host_start_date
+        description: '{{ doc("listings_host_since") }}'
+      - name: number_of_reviews
+        description: '{{ doc("listings_number_of_reviews") }}'
+      - name: review_scores_rating
+        description: '{{ doc("listings_review_scores_rating") }}'
+      - name: first_review_date
+        description: '{{ doc("listings_first_review") }}'
+      - name: last_review_date
+        description: '{{ doc("listings_last_review") }}'
+
+
+  - name: stg_raw__reviews
+    description: Renames the `generated_reviews` table and renames columns
+    columns:
+      - name: review_id
+        description: ' {{ doc("reviews_id") }}'
+      - name: listing_id
+        description: '{{ doc("reviews_listing_id") }}'
+      - name: review_score
+        description: '{{ doc("reviews_review_score") }}'
+      - name: review_date
+        description: '{{ doc("reviews_review_date") }}'
