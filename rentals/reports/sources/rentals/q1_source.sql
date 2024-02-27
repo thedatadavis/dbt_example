@@ -1,10 +1,12 @@
+
+
 with overall_revenue as (
 
     select
         date_trunc('month', available_date) as month_booked,
         sum(daily_rate) as revenue
     
-    from dbt_cdavis_dev.intermediate.int_availabilities_joined_to_listings
+    from rentals.intermediate.int_availabilities_joined_to_listings
     
     where is_available = false 
     
@@ -18,7 +20,7 @@ segment_revenue as (
         date_trunc('month', available_date) as month_booked,
         sum(daily_rate) as revenue
     
-    from dbt_cdavis_dev.intermediate.int_availabilities_joined_to_listings
+    from rentals.intermediate.int_availabilities_joined_to_listings
     
     where is_available = false 
         and array_contains('Air conditioning'::variant, parse_json(amenities))

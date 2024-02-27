@@ -1,3 +1,9 @@
+{{
+    config(
+        docs={'node_color': 'orange'}
+    )
+}}
+
 with neighborhoods as (
 
     select distinct category

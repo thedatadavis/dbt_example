@@ -1,3 +1,9 @@
+{{
+    config(
+        docs={'node_color': 'orange'}
+    )
+}}
+
 select
     listing_id,
 
