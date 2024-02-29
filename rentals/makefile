@@ -19,4 +19,4 @@ run_dbt:
 
 	@echo "==============================="
 	@echo "Building report sources..."
-	cp -rf ./target/compiled/rentals/analyses/* ./reports/sources/rentals/
+	cp -rf ./target/compiled/rentals/models/marts/occupancies.sql ./target/compiled/rentals/analyses/pricing.sql ./reports/sources/rentals/

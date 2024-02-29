@@ -1,6 +1,6 @@
 with durations as (
 
-      select
+    select
         listing_id,
         listing_window,
         iff(is_available, 'vacancy', 'occupancy') as listing_window_type,
@@ -10,10 +10,9 @@ with durations as (
         max(maximum_nights) as allowable_nights,
         sum(nightly_price) as revenue
 
-    from {{ ref('occupancies') }}
+    from occupancies
 
-    where listing_window_type = 'vacancy'
-        and has_lockbox = true
+    where has_lockbox = true
         and has_first_aid_kit = true
 
     group by 1, 2, 3
@@ -25,6 +24,8 @@ select
     least(duration, allowable_nights) as max_availability
 
 from durations
+
+where listing_window_type = 'vacancy'
 
 -- The above is a user-friendly alternative to the following:
 
