@@ -3,10 +3,10 @@ with durations as (
       select
         listing_id,
         listing_window,
-        iff(is_available, 'vacancy', 'occupancy') as listing_window_type,
+        case when is_available = 1 then 'vacancy' else 'occupancy' end as listing_window_type,
         min(calendar_date) as start_date,
         max(calendar_date) as end_date,
-        max(calendar_date) - min(calendar_date) as duration,
+        date_diff('day', min(calendar_date), max(calendar_date)) as duration,
         max(maximum_nights) as allowable_nights,
         sum(nightly_price) as revenue
 
@@ -17,7 +17,7 @@ with durations as (
 )
 
 select
-    listing_id,
+    listing_id::int::text as listing_id, 
 
     -- Some vacancy blocks run longer than the maximum nights allowed for that date range
     -- Take the lesser of those two values
@@ -30,4 +30,6 @@ where listing_window_type = 'vacancy'
 
 group by 1
 
-order by 2 desc
+order by 2 desc, 1
+
+limit 5

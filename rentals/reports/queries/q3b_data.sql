@@ -3,10 +3,10 @@ with durations as (
     select
         listing_id,
         listing_window,
-        iff(is_available, 'vacancy', 'occupancy') as listing_window_type,
+        case when is_available = 1 then 'vacancy' else 'occupancy' end as listing_window_type,
         min(calendar_date) as start_date,
         max(calendar_date) as end_date,
-        max(calendar_date) - min(calendar_date) as duration,
+        date_diff('day', min(calendar_date), max(calendar_date)) as duration,
         max(maximum_nights) as allowable_nights,
         sum(nightly_price) as revenue
 
@@ -20,18 +20,9 @@ with durations as (
 )
 
 select
-    listing_id,
+    listing_id::int::text as listing_id,
     least(duration, allowable_nights) as max_availability
 
 from durations
 
 where listing_window_type = 'vacancy'
-
--- The above is a user-friendly alternative to the following:
-
--- where duration_type = 'vacancy'
---     and array_contains('Lockbox'::variant, parse_json(amenities))
---     and array_contains('First aid kit'::variant, parse_json(amenities))
-
--- It also avoids needing to parse the JSON in the 'amenities' 
--- column multiple times for more detailed searches.
