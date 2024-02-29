@@ -1,0 +1,8 @@
+version: 2
+
+models:
+    - name: occupancies
+      description: Reservations and vacancies for each listing/day
+
+    - name: reviews
+      description: All reviews for each listing

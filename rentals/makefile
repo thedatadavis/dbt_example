@@ -1,3 +1,5 @@
+.PHONY: run_dbt
+
 ENV ?= dev
 
 run_dbt:

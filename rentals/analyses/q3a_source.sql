@@ -1,8 +1,20 @@
-{{
-    config(
-        docs={'node_color': 'orange'}
-    )
-}}
+with durations as (
+
+      select
+        listing_id,
+        listing_window,
+        iff(is_available, 'vacancy', 'occupancy') as listing_window_type,
+        min(calendar_date) as start_date,
+        max(calendar_date) as end_date,
+        max(calendar_date) - min(calendar_date) as duration,
+        max(maximum_nights) as allowable_nights,
+        sum(nightly_price) as revenue
+
+    from {{ ref('occupancies') }}
+
+    group by 1, 2, 3
+
+)
 
 select
     listing_id,
@@ -12,9 +24,9 @@ select
     -- Then take the max to get the largest across all vacancy blocks
     max(least(duration, allowable_nights)) as max_availability 
 
-from {{ ref('durations') }}
+from durations
 
-where duration_type = 'vacancy'
+where listing_window_type = 'vacancy'
 
 group by 1
 

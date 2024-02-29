@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: int_listing_dates_grouped
+    description: Assign a label for each consecutive window of dates for reservations and vacancies
+
+  - name: int_listing_has_amenities
+    description: Explodes the `amenities` JSON and adds boolean to indicate if the listing has each distinct amenity

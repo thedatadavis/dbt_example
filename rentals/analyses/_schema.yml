@@ -1,0 +1,19 @@
+version: 2
+
+analyses:
+  - name: q1_source
+    description: source table
+    docs:
+      node_color: gold 
+
+  - name: q2_source
+    docs:
+      node_color: gold
+
+  - name: q3a_source
+    docs:
+      node_color: gold
+
+  - name: q3b_source
+    docs:
+      node_color: gold

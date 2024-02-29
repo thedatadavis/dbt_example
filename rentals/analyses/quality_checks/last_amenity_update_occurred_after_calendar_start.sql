@@ -6,9 +6,9 @@
 with calendar_start as (
 
     select
-        min(available_date) as min_date
+        min(calendar_date) as min_date
 
-    from {{ ref("stg_raw__availabilities") }}
+    from {{ ref("stg_raw__calendar") }}
 
 ),
 

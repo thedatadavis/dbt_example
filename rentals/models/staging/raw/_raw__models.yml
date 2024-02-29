@@ -12,8 +12,8 @@ models:
         description: '{{ doc("amenities_amenities") }}'
 
 
-  - name: stg_raw__availabilities
-    description: Renames the `calender` table; creates surrogate primary key, and renames columns
+  - name: stg_raw__calendar
+    description: Creates surrogate primary key, and renames columns
     columns:
       - name: availability_id
         description: Surrogate primary key made up of `date` and `listing_id`

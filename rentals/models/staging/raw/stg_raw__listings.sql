@@ -18,8 +18,8 @@ renamed as (
         cast(REGEXP_SUBSTR(bathrooms_text, '^[0-9.]+') as decimal(10,2)) as bathrooms,
         bedrooms,
         beds,
-        price as original_daily_rate_text,
-        cast(replace(price, '$', '') as decimal(10,2)) as original_daily_rate,   
+        price as original_nightly_price_text,
+        cast(replace(price, '$', '') as decimal(10,2)) as original_nightly_price,   
 
         -- host info
         host_id,
@@ -30,7 +30,7 @@ renamed as (
 
         -- review info
         number_of_reviews,
-        review_scores_rating,
+        review_scores_rating as average_rating,
         first_review as first_review_date,
         last_review as last_review_date
 

@@ -1,23 +1,84 @@
+with pricing as (
+    select 
 
+        'neighborhood' as category_type,
 
-with neighborhoods as (
+        NEIGHBORHOOD as category,
+
+        calendar_date,
+
+        avg(nightly_price) as avg_daily_price,
+        avg(case when is_available = false then nightly_price end) as avg_booked_price,
+        avg(case when is_available = true then nightly_price end) as avg_vacancy_price
+
+    from dbt_cdavis_dev.marts.occupancies
+
+    group by 1, 2, 3
+
+    union all
+
+    
+    select 
+
+        'property_type' as category_type,
+
+        PROPERTY_TYPE as category,
+
+        calendar_date,
+
+        avg(nightly_price) as avg_daily_price,
+        avg(case when is_available = false then nightly_price end) as avg_booked_price,
+        avg(case when is_available = true then nightly_price end) as avg_vacancy_price
+
+    from dbt_cdavis_dev.marts.occupancies
+
+    group by 1, 2, 3
+
+    union all
+
+    
+    select 
+
+        'room_type' as category_type,
+
+        ROOM_TYPE as category,
+
+        calendar_date,
+
+        avg(nightly_price) as avg_daily_price,
+        avg(case when is_available = false then nightly_price end) as avg_booked_price,
+        avg(case when is_available = true then nightly_price end) as avg_vacancy_price
+
+    from dbt_cdavis_dev.marts.occupancies
+
+    group by 1, 2, 3
+
+    
+
+    
+
+    order by 1, 2, 3
+
+),
+
+neighborhoods as (
 
     select distinct category
-    from rentals.marts.daily_pricing_by_category 
+    from pricing
     where category_type = 'neighborhood'
 ),
 
 start_price as (
 
     select category, avg_daily_price 
-    from rentals.marts.daily_pricing_by_category 
+    from pricing
     where available_date = '2021-07-12'
     
 ),
 
 end_price as (
     select category, avg_daily_price 
-    from rentals.marts.daily_pricing_by_category 
+    from pricing
     where available_date = '2022-07-11'
 )
 

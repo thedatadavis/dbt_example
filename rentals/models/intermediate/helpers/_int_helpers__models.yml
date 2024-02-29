@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: int_distinct_amenities
+    description: Distinct list of all amenities in the listings table
+    columns:
+      - name: amenity_label
+        description: Amenity converted to snake_case (e.g. "first_aid_kit")

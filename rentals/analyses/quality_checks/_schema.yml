@@ -1,0 +1,12 @@
+version:
+
+analyses:
+  - name: last_amenity_update_does_not_match_listing
+    description: Quality check before proceeding; verifies that the listings table contains the latest amenity changes.
+    docs:
+        node_color: gray
+
+  - name: last_amenity_update_occurred_after_calendar_start
+    description: Quality check before proceeding; verifies that no amenity update occurred after the start of the calendar.
+    docs:
+        node_color: gray
