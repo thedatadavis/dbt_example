@@ -10,7 +10,7 @@ with durations as (
         max(maximum_nights) as allowable_nights,
         sum(nightly_price) as revenue
 
-    from dbt_cdavis_dev.marts.occupancies
+    from rentals.marts.occupancies
 
     group by 1, 2, 3
 

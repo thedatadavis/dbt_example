@@ -10,7 +10,11 @@ with durations as (
         max(maximum_nights) as allowable_nights,
         sum(nightly_price) as revenue
 
-    from dbt_cdavis_dev.marts.occupancies
+    from rentals.marts.occupancies
+
+    where listing_window_type = 'vacancy'
+        and has_lockbox = true
+        and has_first_aid_kit = true
 
     group by 1, 2, 3
 
@@ -21,10 +25,6 @@ select
     least(duration, allowable_nights) as max_availability
 
 from durations
-
-where listing_window_type = 'vacancy'
-    and has_lockbox = true
-    and has_first_aid_kit = true
 
 -- The above is a user-friendly alternative to the following:
 

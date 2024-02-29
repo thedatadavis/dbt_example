@@ -6,7 +6,7 @@
 with calendar_start as (
 
     select
-        min(date) as min_date
+        min(calendar_date) as min_date
 
     from staging.staging.stg_raw__calendar
 

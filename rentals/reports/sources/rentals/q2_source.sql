@@ -11,7 +11,7 @@ with pricing as (
         avg(case when is_available = false then nightly_price end) as avg_booked_price,
         avg(case when is_available = true then nightly_price end) as avg_vacancy_price
 
-    from dbt_cdavis_dev.marts.occupancies
+    from rentals.marts.occupancies
 
     group by 1, 2, 3
 
@@ -30,7 +30,7 @@ with pricing as (
         avg(case when is_available = false then nightly_price end) as avg_booked_price,
         avg(case when is_available = true then nightly_price end) as avg_vacancy_price
 
-    from dbt_cdavis_dev.marts.occupancies
+    from rentals.marts.occupancies
 
     group by 1, 2, 3
 
@@ -49,7 +49,7 @@ with pricing as (
         avg(case when is_available = false then nightly_price end) as avg_booked_price,
         avg(case when is_available = true then nightly_price end) as avg_vacancy_price
 
-    from dbt_cdavis_dev.marts.occupancies
+    from rentals.marts.occupancies
 
     group by 1, 2, 3
 
@@ -72,14 +72,14 @@ start_price as (
 
     select category, avg_daily_price 
     from pricing
-    where available_date = '2021-07-12'
+    where calendar_date = '2021-07-12'
     
 ),
 
 end_price as (
     select category, avg_daily_price 
     from pricing
-    where available_date = '2022-07-11'
+    where calendar_date = '2022-07-11'
 )
 
 select

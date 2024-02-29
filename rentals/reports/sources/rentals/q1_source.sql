@@ -5,7 +5,7 @@ with revenue as (
         sum(nightly_price) as total_revenue,
         sum(case when has_air_conditioning = true then nightly_price else 0 end) as segment_revenue
     
-    from dbt_cdavis_dev.marts.occupancies
+    from rentals.marts.occupancies
     
     where is_available = false 
     
