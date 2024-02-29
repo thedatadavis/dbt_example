@@ -3,7 +3,7 @@ title: Technical Assessment by Chris Davis
 ---
 
 ---
-![dbt Lineage](/static/rentals_dbt_lineage.png)
+![dbt Lineage](rentals_dbt_lineage.png)
 --- 
 
 ## Agenda
